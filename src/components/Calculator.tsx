@@ -1,22 +1,69 @@
 import React from "react";
+import Results from "./Results";
 
 const Calculator = () => {
-    const [savingsGoal, setSavingsGoal] = React.useState<string>("");
-    const [goalAmount, setGoalAmount] = React.useState<number>(0);
-    const [amountSaved, setAmountSaved] = React.useState<number>(0);
-    const [fundingFrequency, setFundingFrequency] = React.useState<string>("weekly");
+  const [showResults, setShowResults] = React.useState<boolean>(false);
+  const [savingsGoal, setSavingsGoal] = React.useState<string>("");
+  const [goalAmount, setGoalAmount] = React.useState<number>(0);
+  const [amountSaved, setAmountSaved] = React.useState<number>(0);
+  const [fundingFrequency, setFundingFrequency] = React.useState<string>("weekly");
+  const [amountPerPeriod, setAmountPerPeriod] = React.useState<number>(0);
 
-    // Set the default date to today
-    const today: string = new Date().toISOString().split("T")[0];
-    const [targetDate, setTargetDate] = React.useState<string>(today);
+  // Set the default date to today
+  const today: string = new Date().toISOString().split("T")[0];
+  const [targetDate, setTargetDate] = React.useState<string>(today);
 
-    const handleFrequencyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setFundingFrequency(e.target.value);
-    };
+  // Get the value of the selected frequency
+  const handleFrequencyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFundingFrequency(e.target.value);
+  };
 
-    return (
+  // Handle form submission: show results
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    // Get the amount needed per funding period
+    const amountPerPeriod: number = calculateAmountPerPeriod(goalAmount, calculatePeriods(targetDate, fundingFrequency));
+
+    // Update the state with the amount per period and show the results
+    setAmountPerPeriod(amountPerPeriod);
+    setShowResults(true);
+  }
+
+  // Calculate the number of funding periods
+  const calculatePeriods = (targetDate: string, fundingFrequency: string) => {
+    const today: Date = new Date();
+    const target: Date = new Date(targetDate);
+    const difference: number = target.getTime() - today.getTime();
+    let periods: number = 0;
+
+    // Calculate the number of periods based on the funding frequency
+    switch (fundingFrequency) {
+      case "weekly":
+        periods = difference / (1000 * 60 * 60 * 24 * 7);
+        break;
+      case "bi-weekly":
+        periods = difference / (1000 * 60 * 60 * 24 * 14);
+        break;
+      case "monthly":
+        periods = difference / (1000 * 60 * 60 * 24 * 30);
+        break;
+      default:
+        break;
+    }
+
+    // Use Math.floor to round down so that the user meets their goal before the target date
+    return Math.floor(periods);
+  };
+
+  // Calculate the amount needed per funding period
+  const calculateAmountPerPeriod = (goalAmount: number, periods: number) => {
+    return Math.ceil(goalAmount / periods);
+  };
+
+  return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           <span>What are you saving for?</span>
           <input
@@ -51,10 +98,16 @@ const Calculator = () => {
         </label>
         <button type="submit">Calculate</button>
       </form>
-      {(
-        <p>
-          You need ${goalAmount} {fundingFrequency} to meet your {savingsGoal} goal by {targetDate}.
-        </p>
+      
+      {showResults && (
+        <Results
+          goalAmount={goalAmount}
+          fundingFrequency={fundingFrequency}
+          savingsGoal={savingsGoal}
+          targetDate={targetDate}
+          amountSaved={amountSaved}
+          amountPerPeriod={amountPerPeriod}
+        />
       )}
     </>
   );
