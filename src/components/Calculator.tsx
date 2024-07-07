@@ -82,22 +82,22 @@ const Calculator = () => {
               onChange={(e) => setAmountSaved(Number(e.target.value))}
             />
           </label>{" "}
-          already saved, you need to contribute
+          already saved, I need to contribute
           {/* amount calculated */}{" "}
-          <span className="calc-value">${amountPerPeriod}</span>{" "}
-          {/* funding frequency */}
+          <span className="calc-value">${amountPerPeriod}</span>
+          {/* funding frequency */}{" "}
           <label>
             <select value={fundingFrequency} onChange={handleFrequencyChange}>
-              <option value="weekly">weekly</option>
-              <option value="bi-weekly">bi-weekly</option>
-              <option value="monthly">monthly</option>
+              <option value="weekly">every week</option>
+              <option value="bi-weekly">every other week</option>
+              <option value="monthly">every month</option>
             </select>
           </label>{" "}
-          to meet your {/* savings goal name */}
+          to meet {/* savings goal name */}
           <label>
             <input
               type="text"
-              placeholder="vacation"
+              placeholder="my vacation"
               value={savingsGoal}
               onChange={(e) => setSavingsGoal(e.target.value)}
             />
@@ -110,8 +110,7 @@ const Calculator = () => {
               onChange={(e) => setGoalAmount(Number(e.target.value))}
             />
           </label>{" "}
-          by
-          {/* goal target date */}
+          by {/* goal target date */}
           <label>
             <input
               type="date"
