@@ -3,6 +3,10 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .subhead {
@@ -10,22 +14,10 @@
   font-style: italic;
 }
 
-label {
-  display: block;
-  margin: 1rem 0;
+form {
+  max-width: 630px;
 }
 
-label > span {
-  margin-right: 1rem;
-}
-
-label > input {
-  border: none;
-  border-bottom: 1px solid #333;
-  background-color: #f0f0f0;
-}
-
-button {
-  background-color: rgb(26, 90, 180) !important;
-  color: white;
+form > p {
+  font-size: 1.2em;
 }
