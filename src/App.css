@@ -25,7 +25,7 @@ form {
 }
 
 form > p {
-  font-size: 3.2rem;
+  font-size: 3rem;
   margin: 1rem 0;
 }
 
@@ -35,11 +35,13 @@ input::placeholder {
 
 input,
 select {
-  background-color: hsl(from var(--secondary-color) h s l / 0.2);
+  background-color: hsl(from var(--secondary-color) h s l / 0.15);
   color: var(--text-color);
   max-height: 1.25em;
   border: none;
-  border-bottom: 3px solid var(--secondary-color);
+  border-bottom: 4px solid var(--secondary-color);
+  padding: 0 10px;
+  font-weight: 600 !important;
 }
 
 .btn {
@@ -48,4 +50,11 @@ select {
   border: none;
   padding: 1rem 2rem;
   font-size: 2rem;
+}
+
+.calc-value {
+  font-weight: 600;
+  background-color: var(--tertiary-color);
+  padding: 0 1rem;
+  border-radius: 0.5rem;
 }
