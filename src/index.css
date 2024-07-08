@@ -24,7 +24,7 @@
 }
 * {
   margin: 0;
-  line-height: calc(1em + 0.8rem);
+  line-height: calc(1.2em + 0.8rem);
 }
 html,
 body {
