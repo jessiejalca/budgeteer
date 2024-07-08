@@ -29,17 +29,27 @@ form {
 
 form > p {
   font-size: 3.2rem;
+  margin: 1rem 0;
 }
 
 input::placeholder {
   color: var(--text-color);
 }
 
-input {
+input,
+select {
   background-color: hsl(from var(--secondary-color) h s l / 0.2);
   color: var(--text-color);
   max-height: 1.25em;
   width: fit-content;
   border: none;
   border-bottom: 3px solid var(--secondary-color);
+}
+
+.btn {
+  background-color: var(--text-color);
+  color: var(--primary-color);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 2rem;
 }

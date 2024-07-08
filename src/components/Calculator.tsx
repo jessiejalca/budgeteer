@@ -130,7 +130,9 @@ const Calculator = () => {
           </label>
           .
         </p>
-        <button type="submit">Calculate</button>
+        <button type="submit" className="btn">
+          Calculate
+        </button>
       </form>
     </>
   );
