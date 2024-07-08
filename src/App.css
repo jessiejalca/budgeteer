@@ -43,6 +43,7 @@ select {
   padding: 0 10px;
   font-weight: 600 !important;
   field-sizing: content;
+  max-width: 100%;
 }
 
 .btn {
