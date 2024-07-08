@@ -34,7 +34,7 @@ const Calculator = () => {
     // Get the amount needed per funding period
     const amountPerPeriod: number = calculateAmountPerPeriod(
       goalAmount,
-      calculatePeriods(targetDate, fundingFrequency)
+      calculatePeriods(startingDate, targetDate, fundingFrequency)
     );
 
     // Update the state with the amount per period and show the results
@@ -43,12 +43,13 @@ const Calculator = () => {
 
   // Calculate the number of funding periods
   const calculatePeriods = (
+    startDate: string,
     targetDate: string,
     fundingFrequency: string
   ): number => {
-    const today: Date = new Date();
+    const start: Date = new Date(startDate);
     const target: Date = new Date(targetDate);
-    const difference: number = target.getTime() - today.getTime();
+    const difference: number = target.getTime() - start.getTime();
     let periods: number = 0;
 
     // Calculate the number of periods based on the funding frequency
