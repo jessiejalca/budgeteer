@@ -6,10 +6,7 @@
   --tertiary-color: #ec9a29;
   --text-color: #143642;
 
-  max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
-  text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +21,7 @@
 }
 
 form {
-  max-width: 825px;
+  max-width: 930px;
 }
 
 form > p {
@@ -41,7 +38,6 @@ select {
   background-color: hsl(from var(--secondary-color) h s l / 0.2);
   color: var(--text-color);
   max-height: 1.25em;
-  width: fit-content;
   border: none;
   border-bottom: 3px solid var(--secondary-color);
 }

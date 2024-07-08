@@ -8,12 +8,11 @@ const Calculator = () => {
     React.useState<string>("weekly");
   const [amountPerPeriod, setAmountPerPeriod] = React.useState<number>(0);
 
-  // Set the default date to today
-  const today: string = new Date().toISOString().split("T")[0];
+  // Set the default date to a week from today
   const aWeekFromToday: string = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
     .toISOString()
     .split("T")[0];
-  const [targetDate, setTargetDate] = React.useState<string>(today);
+  const [targetDate, setTargetDate] = React.useState<string>(aWeekFromToday);
 
   // Get the value of the selected frequency
   const handleFrequencyChange = (
@@ -84,7 +83,6 @@ const Calculator = () => {
               type="number"
               placeholder={amountSaved.toString()}
               min={0}
-              step={10}
               onChange={(e) => setAmountSaved(Number(e.target.value))}
             />
           </label>{" "}
@@ -99,7 +97,17 @@ const Calculator = () => {
               <option value="monthly">every month</option>
             </select>
           </label>{" "}
-          to meet my {/* savings goal name */}
+          to meet my goal of {/* goal amount */}
+          <label>
+            $
+            <input
+              type="number"
+              placeholder={goalAmount.toString()}
+              min={100}
+              onChange={(e) => setGoalAmount(Number(e.target.value))}
+            />
+          </label>{" "}
+          for {/* savings goal name */}
           <label>
             <input
               type="text"
@@ -107,24 +115,12 @@ const Calculator = () => {
               onChange={(e) => setSavingsGoal(e.target.value)}
             />
           </label>{" "}
-          goal of {/* goal amount */}
-          <label>
-            $
-            <input
-              type="number"
-              placeholder={goalAmount.toString()}
-              min={100}
-              step={100}
-              onChange={(e) => setGoalAmount(Number(e.target.value))}
-            />
-          </label>{" "}
           by {/* goal target date */}
           <label>
             <input
               type="date"
-              value={aWeekFromToday}
+              value={targetDate}
               onChange={(e) => setTargetDate(e.target.value)}
-              // set the minimum attribute to a week from today
               min={aWeekFromToday}
             />
           </label>
