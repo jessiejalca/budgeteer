@@ -1,8 +1,8 @@
 import React from "react";
 
 const Calculator = () => {
-  const [savingsGoal, setSavingsGoal] = React.useState<string>("");
-  const [goalAmount, setGoalAmount] = React.useState<number>(0);
+  const [savingsGoal, setSavingsGoal] = React.useState<string>("vacation");
+  const [goalAmount, setGoalAmount] = React.useState<number>(1000);
   const [amountSaved, setAmountSaved] = React.useState<number>(0);
   const [fundingFrequency, setFundingFrequency] =
     React.useState<string>("weekly");
@@ -10,6 +10,9 @@ const Calculator = () => {
 
   // Set the default date to today
   const today: string = new Date().toISOString().split("T")[0];
+  const aWeekFromToday: string = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .split("T")[0];
   const [targetDate, setTargetDate] = React.useState<string>(today);
 
   // Get the value of the selected frequency
@@ -67,18 +70,21 @@ const Calculator = () => {
     goalAmount: number,
     periods: number
   ): number => {
-    return Math.ceil(goalAmount / periods);
+    return Math.abs(Math.ceil((goalAmount - amountSaved) / periods));
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <p>
-          With ${/* amount already saved */}
+          With {/* amount already saved */}
           <label>
+            $
             <input
               type="number"
-              value={amountSaved}
+              placeholder={amountSaved.toString()}
+              min={0}
+              step={10}
               onChange={(e) => setAmountSaved(Number(e.target.value))}
             />
           </label>{" "}
@@ -93,20 +99,22 @@ const Calculator = () => {
               <option value="monthly">every month</option>
             </select>
           </label>{" "}
-          to meet {/* savings goal name */}
+          to meet my {/* savings goal name */}
           <label>
             <input
               type="text"
-              placeholder="my vacation"
-              value={savingsGoal}
+              placeholder={savingsGoal}
               onChange={(e) => setSavingsGoal(e.target.value)}
             />
           </label>{" "}
-          goal of ${/* goal amount */}
+          goal of {/* goal amount */}
           <label>
+            $
             <input
               type="number"
-              value={goalAmount}
+              placeholder={goalAmount.toString()}
+              min={100}
+              step={100}
               onChange={(e) => setGoalAmount(Number(e.target.value))}
             />
           </label>{" "}
@@ -114,9 +122,10 @@ const Calculator = () => {
           <label>
             <input
               type="date"
-              value={targetDate}
+              value={aWeekFromToday}
               onChange={(e) => setTargetDate(e.target.value)}
-              min={today}
+              // set the minimum attribute to a week from today
+              min={aWeekFromToday}
             />
           </label>
           .
