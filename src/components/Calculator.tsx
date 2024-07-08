@@ -8,11 +8,17 @@ const Calculator = () => {
     React.useState<string>("weekly");
   const [amountPerPeriod, setAmountPerPeriod] = React.useState<number>(0);
 
-  // Set the default date to a week from today
-  const aWeekFromToday: string = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+  // Set the default starting date to today
+  const today: string = new Date().toISOString().split("T")[0];
+  const [startingDate, setStartingDate] = React.useState<string>(today);
+
+  // Set the default target date to a month from today
+  const aMonthFromToday: string = new Date(
+    new Date().setMonth(new Date().getMonth() + 1)
+  )
     .toISOString()
     .split("T")[0];
-  const [targetDate, setTargetDate] = React.useState<string>(aWeekFromToday);
+  const [targetDate, setTargetDate] = React.useState<string>(aMonthFromToday);
 
   // Get the value of the selected frequency
   const handleFrequencyChange = (
@@ -97,13 +103,21 @@ const Calculator = () => {
               <option value="monthly">every month</option>
             </select>
           </label>{" "}
+          starting {/* starting date */}
+          <label>
+            <input
+              type="date"
+              value={startingDate}
+              onChange={(e) => setStartingDate(e.target.value)}
+            />
+          </label>{" "}
           to meet my goal of {/* goal amount */}
           <label>
             $
             <input
               type="number"
-              placeholder={goalAmount.toString()}
               min={100}
+              placeholder={goalAmount.toString()}
               onChange={(e) => setGoalAmount(Number(e.target.value))}
             />
           </label>{" "}
@@ -119,9 +133,9 @@ const Calculator = () => {
           <label>
             <input
               type="date"
+              min={aMonthFromToday}
               value={targetDate}
               onChange={(e) => setTargetDate(e.target.value)}
-              min={aWeekFromToday}
             />
           </label>
           .
