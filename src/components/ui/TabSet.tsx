@@ -8,7 +8,7 @@ type TabSetProps = {
 
 const TabSet = ({ setCalculator, calculator, tabNames }: TabSetProps) => {
   return (
-    <div>
+    <div className="tab-group">
       {tabNames.map((tabName) => (
         <Tab
           key={tabName}

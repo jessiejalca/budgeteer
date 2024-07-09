@@ -46,12 +46,30 @@ select {
   max-width: 100%;
 }
 
-.btn {
+.tab-group {
+  margin: 1rem 0;
+}
+
+button[role="tab"] {
+  font-weight: 600;
+  border: none;
+  border: 1px solid var(--text-color);
+  padding: 0.2rem 0.5rem;
+  text-transform: capitalize;
+  background: var(--primary-color);
+}
+
+button[role="tab"]:hover,
+button[role="tab"]:focus-visible {
+  background-color: hsl(from var(--text-color) h s l / 0.15);
+  color: var(--text-color);
+}
+
+button[aria-selected="true"],
+button[aria-selected="true"]:hover,
+button[aria-selected="true"]:focus-visible {
   background-color: var(--text-color);
   color: var(--primary-color);
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 2rem;
 }
 
 .calc-value {
