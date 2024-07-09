@@ -1,4 +1,4 @@
-// Calculate the number of funding periods
+// Calculate the number of funding periods based on a funding frequency, start date, and target date
 const calculatePeriods = (
   startDate: string,
   targetDate: string,
@@ -28,7 +28,7 @@ const calculatePeriods = (
   return Math.floor(periods);
 };
 
-// Calculate the amount needed per funding period
+// Calculate the amount needed per funding period based on a goal amount, amount saved, and number of periods
 const calculateAmountPerPeriod = (
   goalAmount: number,
   amountSaved: number,
@@ -37,7 +37,57 @@ const calculateAmountPerPeriod = (
   return Math.abs(Math.ceil((goalAmount - amountSaved) / periods));
 };
 
+// Calculate how many times the funding plan will have to run to reach the goal based on a funding and goal amount
+const calculateNumberOfRuns = (
+  fundingAmount: number,
+  goalAmount: number
+): number => {
+  return Math.ceil(goalAmount / fundingAmount);
+};
+
+// Calculate the goal completion date based on a starting date, funding frequency and number of periods
+const calculateGoalFinishDate = (
+  startingDate: string,
+  periods: number,
+  fundingFrequency: string
+): string => {
+  const start: Date = new Date(startingDate);
+  const target: Date = new Date(start);
+
+  switch (fundingFrequency) {
+    case "weekly":
+      target.setDate(start.getDate() + periods * 7);
+      break;
+    case "bi-weekly":
+      target.setDate(start.getDate() + periods * 14);
+      break;
+    case "monthly":
+      target.setMonth(start.getMonth() + periods);
+      break;
+  }
+
+  return target.toISOString().split("T")[0];
+};
+
+// Calculate the number of weeks, months, and years between two dates
+const calculateTimeBetweenDates = (
+  startDate: string,
+  endDate: string
+): { weeks: number; months: number; years: number } => {
+  const start: Date = new Date(startDate);
+  const end: Date = new Date(endDate);
+  const difference: number = end.getTime() - start.getTime();
+  const weeks: number = Math.floor(difference / (1000 * 60 * 60 * 24 * 7));
+  const months: number = Math.floor(difference / (1000 * 60 * 60 * 24 * 30));
+  const years: number = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
+
+  return { weeks, months, years };
+};
+
 export default {
   calculatePeriods,
   calculateAmountPerPeriod,
+  calculateNumberOfRuns,
+  calculateGoalFinishDate,
+  calculateTimeBetweenDates,
 };
