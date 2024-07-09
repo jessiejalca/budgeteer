@@ -1,5 +1,5 @@
 import React from "react";
-import utils from "../utils";
+import utils from "../../utils";
 
 type TargetDateProps = {
   startingDate: string;
@@ -14,7 +14,7 @@ const TargetDate = ({
   fundingFrequency,
   handleFrequencyChange,
 }: TargetDateProps) => {
-  const [savingsGoal, setSavingsGoal] = React.useState<string>("vacation");
+  const [savingsGoal, setSavingsGoal] = React.useState<string>("my vacation");
   const [goalAmount, setGoalAmount] = React.useState<number>(1000);
   const [amountSaved, setAmountSaved] = React.useState<number>(0);
   const [amountPerPeriod, setAmountPerPeriod] = React.useState<number>(0);

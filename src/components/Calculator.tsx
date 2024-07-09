@@ -1,6 +1,6 @@
 import React from "react";
-import TargetDate from "./TargetDate";
-import TargetAmount from "./TargetAmount";
+import TargetDate from "./calculators/TargetDate";
+import TargetAmount from "./calculators/TargetAmount";
 
 const Calculator = () => {
   // Decide which calculator to render based on the user's selection
@@ -51,7 +51,12 @@ const Calculator = () => {
             handleFrequencyChange={handleFrequencyChange}
           />
         ) : (
-          <TargetAmount />
+          <TargetAmount
+            startingDate={startingDate}
+            setStartingDate={setStartingDate}
+            fundingFrequency={fundingFrequency}
+            handleFrequencyChange={handleFrequencyChange}
+          />
         )}
       </main>
     </>
