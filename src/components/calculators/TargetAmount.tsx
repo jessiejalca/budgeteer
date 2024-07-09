@@ -66,9 +66,10 @@ const TargetAmount = ({
           <input
             name="funding-amount"
             type="number"
-            min={5}
+            min={10}
+            step={10}
             placeholder={fundingAmount.toString()}
-            onChange={(e) => setFundingAmount(Number(e.target.value))}
+            onChange={(e) => setFundingAmount(Number(e.target.value) || 1)}
           />
         </label>{" "}
         towards {/* savings goal name */}
