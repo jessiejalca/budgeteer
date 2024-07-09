@@ -1,4 +1,5 @@
 import React from "react";
+import TabSet from "./ui/TabSet";
 import TargetDate from "./calculators/TargetDate";
 import TargetAmount from "./calculators/TargetAmount";
 
@@ -24,22 +25,11 @@ const Calculator = () => {
   return (
     <>
       <div>
-        <button
-          role="tab"
-          aria-selected={calculator === "target-date" ? "true" : "false"}
-          aria-controls="tabpanel-target-date"
-          id="tab-target-date"
-          onClick={() => setCalculator("target-date")}
-        >
-          Target Date
-        </button>
-        <button
-          role="tab"
-          aria-selected={calculator === "target-amount" ? "true" : "false"}
-          onClick={() => setCalculator("target-amount")}
-        >
-          Target Amount
-        </button>
+        <TabSet
+          setCalculator={setCalculator}
+          calculator={calculator}
+          tabNames={["target-date", "target-amount"]}
+        />
       </div>
       {/* Render the selected calculator */}
       <main>
