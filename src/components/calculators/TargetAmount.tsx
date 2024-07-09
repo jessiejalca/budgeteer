@@ -111,6 +111,7 @@ const TargetAmount = ({
             name="goal-amount"
             type="number"
             min={100}
+            step={100}
             placeholder={goalAmount.toString()}
             onChange={(e) => setGoalAmount(Number(e.target.value))}
           />

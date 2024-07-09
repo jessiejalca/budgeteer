@@ -51,6 +51,7 @@ const TargetDate = ({
             type="number"
             placeholder={amountSaved.toString()}
             min={0}
+            step={10}
             onChange={(e) => setAmountSaved(Number(e.target.value))}
           />
         </label>{" "}
@@ -85,6 +86,7 @@ const TargetDate = ({
             name="goal-amount"
             type="number"
             min={100}
+            step={100}
             placeholder={goalAmount.toString()}
             onChange={(e) => setGoalAmount(Number(e.target.value))}
           />
