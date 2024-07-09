@@ -41,65 +41,76 @@ const TargetDate = ({
   }, [goalAmount, amountSaved, fundingFrequency, startingDate, targetDate]); // Dependencies
 
   return (
-    <p>
-      With {/* amount already saved */}
-      <label>
-        $
-        <input
-          type="number"
-          placeholder={amountSaved.toString()}
-          min={0}
-          onChange={(e) => setAmountSaved(Number(e.target.value))}
-        />
-      </label>{" "}
-      already saved, I need to contribute
-      {/* amount calculated */}{" "}
-      <span className="calc-value">${amountPerPeriod}</span>
-      {/* funding frequency */}{" "}
-      <label>
-        <select value={fundingFrequency} onChange={handleFrequencyChange}>
-          <option value="weekly">every week</option>
-          <option value="bi-weekly">every other week</option>
-          <option value="monthly">every month</option>
-        </select>
-      </label>{" "}
-      starting {/* starting date */}
-      <label>
-        <input
-          type="date"
-          value={startingDate}
-          onChange={(e) => setStartingDate(e.target.value)}
-        />
-      </label>{" "}
-      to meet my goal of {/* goal amount */}
-      <label>
-        $
-        <input
-          type="number"
-          min={100}
-          placeholder={goalAmount.toString()}
-          onChange={(e) => setGoalAmount(Number(e.target.value))}
-        />
-      </label>{" "}
-      for {/* savings goal name */}
-      <label>
-        <input
-          type="text"
-          placeholder={savingsGoal}
-          onChange={(e) => setSavingsGoal(e.target.value)}
-        />
-      </label>{" "}
-      by {/* goal target date */}
-      <label>
-        <input
-          type="date"
-          min={aMonthFromToday}
-          value={targetDate}
-          onChange={(e) => setTargetDate(e.target.value)}
-        />
-      </label>
-      .
-    </p>
+    <div aria-label="Target Date Calculator" role="tabpanel" id="target-date">
+      <p>
+        With {/* amount already saved */}
+        <label id="amount-saved" title="Amount Saved">
+          $
+          <input
+            name="amount-saved"
+            type="number"
+            placeholder={amountSaved.toString()}
+            min={0}
+            onChange={(e) => setAmountSaved(Number(e.target.value))}
+          />
+        </label>{" "}
+        already saved, I need to contribute
+        {/* amount calculated */}{" "}
+        <span className="calc-value">${amountPerPeriod}</span>
+        {/* funding frequency */}{" "}
+        <label id="funding-frequency" title="Funding Frequency">
+          <select
+            name="funding-frequency"
+            value={fundingFrequency}
+            onChange={handleFrequencyChange}
+          >
+            <option value="weekly">every week</option>
+            <option value="bi-weekly">every other week</option>
+            <option value="monthly">every month</option>
+          </select>
+        </label>{" "}
+        starting {/* starting date */}
+        <label id="starting-date" title="Starting Date">
+          <input
+            name="starting-date"
+            type="date"
+            value={startingDate}
+            onChange={(e) => setStartingDate(e.target.value)}
+          />
+        </label>{" "}
+        to meet my goal of {/* goal amount */}
+        <label id="goal-amount" title="Goal Amount">
+          $
+          <input
+            name="goal-amount"
+            type="number"
+            min={100}
+            placeholder={goalAmount.toString()}
+            onChange={(e) => setGoalAmount(Number(e.target.value))}
+          />
+        </label>{" "}
+        for {/* savings goal name */}
+        <label id="savings-goal" title="Savings Goal">
+          <input
+            name="savings-goal"
+            type="text"
+            placeholder={savingsGoal}
+            onChange={(e) => setSavingsGoal(e.target.value)}
+          />
+        </label>{" "}
+        by {/* goal target date */}
+        <label id="goal-target-date" title="Goal Target Date">
+          <input
+            name="goal-target-date"
+            type="date"
+            min={aMonthFromToday}
+            value={targetDate}
+            onChange={(e) => setTargetDate(e.target.value)}
+          />
+        </label>
+        .
+      </p>
+    </div>
   );
 };
 
