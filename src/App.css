@@ -7,16 +7,16 @@
   --text-color: #143642;
 
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
   background-color: var(--primary-color);
   color: var(--text-color);
 }
 
 body {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .subhead {
@@ -83,17 +83,21 @@ button[aria-selected="true"]:focus-visible {
   border-radius: 0.5rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
   div {
     max-width: 100%;
   }
   div > p {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 }
 
 @media screen and (max-width: 480px) {
-  div > p {
+  h1 {
     font-size: 1.8em;
+  }
+  div > p,
+  .subhead {
+    font-size: 1.4em;
   }
 }

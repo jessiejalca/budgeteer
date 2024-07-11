@@ -5,6 +5,6 @@ const Header = () => {
       <p className="subhead">Let's calculate stuff.</p>
     </hgroup>
   );
-}
+};
 
 export default Header;
