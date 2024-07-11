@@ -1,4 +1,8 @@
 import React from "react";
+import NumberInput from "../inputs/NumberInput";
+import DateInput from "../inputs/DateInput";
+import DropdownInput from "../inputs/DropdownInput";
+import TextInput from "../inputs/TextInput";
 import utils from "../../utils";
 
 type TargetDateProps = {
@@ -44,72 +48,49 @@ const TargetDate = ({
     <div aria-label="Target Date Calculator" role="tabpanel" id="target-date">
       <p>
         With {/* amount already saved */}
-        <label id="amount-saved" title="Amount Saved">
-          $
-          <input
-            name="amount-saved"
-            type="number"
-            placeholder={amountSaved.toString()}
-            min={0}
-            step={10}
-            onChange={(e) => setAmountSaved(Number(e.target.value))}
-          />
-        </label>{" "}
+        <NumberInput
+          name="Amount Saved"
+          step={10}
+          numberValue={amountSaved}
+          setNumberValue={setAmountSaved}
+        />{" "}
         already saved, I need to contribute
         {/* amount calculated */}{" "}
         <span className="calc-value">${amountPerPeriod}</span>
-        {/* funding frequency */}{" "}
-        <label id="funding-frequency" title="Funding Frequency">
-          <select
-            name="funding-frequency"
-            value={fundingFrequency}
-            onChange={handleFrequencyChange}
-          >
-            <option value="weekly">every week</option>
-            <option value="bi-weekly">every other week</option>
-            <option value="monthly">every month</option>
-          </select>
-        </label>{" "}
+        {/* funding frequency */}
+        {" every "}
+        <DropdownInput
+          name="Funding Frequency"
+          value={fundingFrequency}
+          options={["week", "two-weeks", "month"]}
+          onChange={handleFrequencyChange}
+        />{" "}
         starting {/* starting date */}
-        <label id="starting-date" title="Starting Date">
-          <input
-            name="starting-date"
-            type="date"
-            value={startingDate}
-            onChange={(e) => setStartingDate(e.target.value)}
-          />
-        </label>{" "}
+        <DateInput
+          name="Starting Date"
+          dateValue={startingDate}
+          setDateValue={setStartingDate}
+        />{" "}
         to meet my goal of {/* goal amount */}
-        <label id="goal-amount" title="Goal Amount">
-          $
-          <input
-            name="goal-amount"
-            type="number"
-            min={100}
-            step={100}
-            placeholder={goalAmount.toString()}
-            onChange={(e) => setGoalAmount(Number(e.target.value))}
-          />
-        </label>{" "}
+        <NumberInput
+          name="Goal Amount"
+          step={100}
+          numberValue={goalAmount}
+          setNumberValue={setGoalAmount}
+        />{" "}
         for {/* savings goal name */}
-        <label id="savings-goal" title="Savings Goal">
-          <input
-            name="savings-goal"
-            type="text"
-            placeholder={savingsGoal}
-            onChange={(e) => setSavingsGoal(e.target.value)}
-          />
-        </label>{" "}
+        <TextInput
+          name="Savings Goal"
+          value={savingsGoal}
+          setValue={setSavingsGoal}
+        />{" "}
         by {/* goal target date */}
-        <label id="goal-target-date" title="Goal Target Date">
-          <input
-            name="goal-target-date"
-            type="date"
-            min={aMonthFromToday}
-            value={targetDate}
-            onChange={(e) => setTargetDate(e.target.value)}
-          />
-        </label>
+        <DateInput
+          name="Goal Target Date"
+          dateValue={targetDate}
+          setDateValue={setTargetDate}
+          minDate={aMonthFromToday}
+        />
         .
       </p>
     </div>

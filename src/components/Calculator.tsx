@@ -13,7 +13,7 @@ const Calculator = () => {
 
   // Get the value of the selected frequency
   const [fundingFrequency, setFundingFrequency] =
-    React.useState<string>("weekly");
+    React.useState<string>("week");
 
   // Handle the change of the funding frequency
   const handleFrequencyChange = (

@@ -11,13 +11,13 @@ const calculatePeriods = (
 
   // Calculate the number of periods based on the funding frequency
   switch (fundingFrequency) {
-    case "weekly":
+    case "week":
       periods = difference / (1000 * 60 * 60 * 24 * 7);
       break;
-    case "bi-weekly":
+    case "two-weeks":
       periods = difference / (1000 * 60 * 60 * 24 * 14);
       break;
-    case "monthly":
+    case "month":
       periods = difference / (1000 * 60 * 60 * 24 * 30);
       break;
     default:
@@ -55,13 +55,13 @@ const calculateGoalFinishDate = (
   const target: Date = new Date(start);
 
   switch (fundingFrequency) {
-    case "weekly":
+    case "week":
       target.setDate(start.getDate() + periods * 7);
       break;
-    case "bi-weekly":
+    case "two-weeks":
       target.setDate(start.getDate() + periods * 14);
       break;
-    case "monthly":
+    case "month":
       target.setMonth(start.getMonth() + periods);
       break;
   }

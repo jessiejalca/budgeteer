@@ -1,5 +1,9 @@
 import React from "react";
+import NumberInput from "../inputs/NumberInput";
+import TextInput from "../inputs/TextInput";
+import DateInput from "../inputs/DateInput";
 import utils from "../../utils";
+import DropdownInput from "../inputs/DropdownInput";
 
 type TargetAmountProps = {
   startingDate: string;
@@ -61,61 +65,41 @@ const TargetAmount = ({
       <p>
         If I put
         {/* funding amount */}{" "}
-        <label>
-          $
-          <input
-            name="funding-amount"
-            type="number"
-            min={10}
-            step={10}
-            placeholder={fundingAmount.toString()}
-            onChange={(e) => setFundingAmount(Number(e.target.value) || 1)}
-          />
-        </label>{" "}
+        <NumberInput
+          name="Funding Amount"
+          step={10}
+          numberValue={fundingAmount}
+          setNumberValue={setFundingAmount}
+        />{" "}
         towards {/* savings goal name */}
-        <label id="savings-goal" title="Savings Goal">
-          <input
-            name="savings-goal"
-            type="text"
-            placeholder={savingsGoal}
-            onChange={(e) => setSavingsGoal(e.target.value)}
-          />
-        </label>{" "}
+        <TextInput
+          name="Savings Goal"
+          value={savingsGoal}
+          setValue={setSavingsGoal}
+        />{" "}
         goal
-        {/* funding frequency */}{" "}
-        <label id="funding-frequency" title="Funding Frequency">
-          <select
-            name="funding-frequency"
-            value={fundingFrequency}
-            onChange={handleFrequencyChange}
-          >
-            <option value="weekly">every week</option>
-            <option value="bi-weekly">every other week</option>
-            <option value="monthly">every month</option>
-          </select>
-        </label>{" "}
+        {/* funding frequency */}
+        {" every "}
+        <DropdownInput
+          name="Funding Frequency"
+          value={fundingFrequency}
+          onChange={handleFrequencyChange}
+          options={["week", "two-weeks", "month"]}
+        />{" "}
         starting {/* starting date */}
-        <label id="starting-date" title="Starting Date">
-          <input
-            name="starting-date"
-            type="date"
-            value={startingDate}
-            onChange={(e) => setStartingDate(e.target.value)}
-          />
-        </label>
+        <DateInput
+          name="Starting Date"
+          dateValue={startingDate}
+          setDateValue={setStartingDate}
+        />
         , I will reach my goal of
         {/* goal amount */}{" "}
-        <label id="goal-amount" title="Goal Amount">
-          $
-          <input
-            name="goal-amount"
-            type="number"
-            min={100}
-            step={100}
-            placeholder={goalAmount.toString()}
-            onChange={(e) => setGoalAmount(Number(e.target.value))}
-          />
-        </label>{" "}
+        <NumberInput
+          name="Goal Amount"
+          step={100}
+          numberValue={goalAmount}
+          setNumberValue={setGoalAmount}
+        />{" "}
         in {/* amount calculated */}
         <span className="calc-value">{timeToReachGoal.months} months</span>, on{" "}
         <span className="calc-value">{goalFinishDate}</span>.
