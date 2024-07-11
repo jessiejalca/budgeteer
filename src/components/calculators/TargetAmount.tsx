@@ -92,17 +92,36 @@ const TargetAmount = ({
           dateValue={startingDate}
           setDateValue={setStartingDate}
         />
-        , I will reach my goal of
+        , I will {/* if it's never */}
+        {goalFinishDate === "never" ? (
+          <span className="calc-value">never</span>
+        ) : (
+          ""
+        )}
+        {/* if it's not never */} reach my goal of
         {/* goal amount */}{" "}
         <NumberInput
           name="Goal Amount"
           step={100}
           numberValue={goalAmount}
           setNumberValue={setGoalAmount}
-        />{" "}
-        in {/* amount calculated */}
-        <span className="calc-value">{timeToReachGoal.months} months</span>, on{" "}
-        <span className="calc-value">{goalFinishDate}</span>.
+        />
+        {goalFinishDate !== "never" ? " in " : ""}
+        {/* amount calculated */}
+        {goalFinishDate === "never" ? (
+          ""
+        ) : timeToReachGoal.months === 1 ? (
+          <span className="calc-value">1 month</span>
+        ) : (
+          <span className="calc-value">{timeToReachGoal.months} months</span>
+        )}
+        {goalFinishDate !== "never" ? ", on " : ""}
+        {goalFinishDate !== "never" ? (
+          <span className="calc-value">{goalFinishDate}</span>
+        ) : (
+          ""
+        )}
+        .
       </p>
     </div>
   );

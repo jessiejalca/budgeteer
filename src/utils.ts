@@ -51,6 +51,8 @@ const calculateGoalFinishDate = (
   periods: number,
   fundingFrequency: string
 ): string => {
+  if (periods === Infinity) return "never";
+
   const start: Date = new Date(startingDate);
   const target: Date = new Date(start);
 
