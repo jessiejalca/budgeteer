@@ -24,13 +24,11 @@ const Calculator = () => {
 
   return (
     <>
-      <div>
-        <TabSet
-          setCalculator={setCalculator}
-          calculator={calculator}
-          tabNames={["target-date", "target-amount"]}
-        />
-      </div>
+      <TabSet
+        setCalculator={setCalculator}
+        calculator={calculator}
+        tabNames={["target-date", "target-amount"]}
+      />
       {/* Render the selected calculator */}
       <main>
         {calculator === "target-date" ? (

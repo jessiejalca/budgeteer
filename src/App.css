@@ -24,12 +24,17 @@ body {
   font-style: italic;
 }
 
+.description {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
 div {
   max-width: 820px;
 }
 
 div > p {
-  font-size: 2.8em;
+  font-size: 1.8rem;
   margin: 1rem 0;
 }
 
@@ -43,7 +48,7 @@ select {
   color: var(--text-color);
   max-height: 1.3em;
   border: none;
-  border-bottom: 4px solid var(--secondary-color);
+  border-bottom: 2px solid var(--secondary-color);
   padding: 0 10px;
   font-weight: 600 !important;
   field-sizing: content;
@@ -58,7 +63,7 @@ button[role="tab"] {
   font-weight: 600;
   border: none;
   border: 1px solid var(--text-color);
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.8rem;
   text-transform: capitalize;
   background: var(--primary-color);
 }
@@ -83,19 +88,16 @@ button[aria-selected="true"]:focus-visible {
   border-radius: 0.5rem;
 }
 
-@media screen and (max-width: 780px) {
-  div {
-    max-width: 100%;
-  }
-  div > p {
-    font-size: 1.8em;
-  }
-}
-
 @media screen and (max-width: 480px) {
   h1 {
     font-size: 1.8em;
   }
+
+  .description {
+    font-size: 1em;
+    line-height: 1.2em;
+  }
+
   div > p,
   .subhead {
     font-size: 1.4em;

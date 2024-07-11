@@ -45,55 +45,58 @@ const TargetDate = ({
   }, [goalAmount, amountSaved, fundingFrequency, startingDate, targetDate]); // Dependencies
 
   return (
-    <div aria-label="Target Date Calculator" role="tabpanel" id="target-date">
-      <p>
-        With {/* amount already saved */}
-        <NumberInput
-          name="Amount Saved"
-          step={10}
-          numberValue={amountSaved}
-          setNumberValue={setAmountSaved}
-        />{" "}
-        already saved, I need to contribute
-        {/* amount calculated */}{" "}
-        <span className="calc-value">${amountPerPeriod}</span>
-        {/* funding frequency */}
-        {" every "}
-        <DropdownInput
-          name="Funding Frequency"
-          value={fundingFrequency}
-          options={["week", "two-weeks", "month"]}
-          onChange={handleFrequencyChange}
-        />{" "}
-        starting {/* starting date */}
-        <DateInput
-          name="Starting Date"
-          dateValue={startingDate}
-          setDateValue={setStartingDate}
-        />{" "}
-        to meet my goal of {/* goal amount */}
-        <NumberInput
-          name="Goal Amount"
-          step={100}
-          numberValue={goalAmount}
-          setNumberValue={setGoalAmount}
-        />{" "}
-        for {/* savings goal name */}
-        <TextInput
-          name="Savings Goal"
-          value={savingsGoal}
-          setValue={setSavingsGoal}
-        />{" "}
-        by {/* goal target date */}
-        <DateInput
-          name="Goal Target Date"
-          dateValue={targetDate}
-          setDateValue={setTargetDate}
-          minDate={aMonthFromToday}
-        />
-        .
-      </p>
-    </div>
+    <>
+      <p className="description">How much do I actually need to save?</p>
+      <div aria-label="Target Date Calculator" role="tabpanel" id="target-date">
+        <p>
+          With {/* amount already saved */}
+          <NumberInput
+            name="Amount Saved"
+            step={10}
+            numberValue={amountSaved}
+            setNumberValue={setAmountSaved}
+          />{" "}
+          already saved, I need to contribute
+          {/* amount calculated */}{" "}
+          <span className="calc-value">${amountPerPeriod}</span>
+          {/* funding frequency */}
+          {" every "}
+          <DropdownInput
+            name="Funding Frequency"
+            value={fundingFrequency}
+            options={["week", "two-weeks", "month"]}
+            onChange={handleFrequencyChange}
+          />{" "}
+          starting {/* starting date */}
+          <DateInput
+            name="Starting Date"
+            dateValue={startingDate}
+            setDateValue={setStartingDate}
+          />{" "}
+          to meet my goal of {/* goal amount */}
+          <NumberInput
+            name="Goal Amount"
+            step={100}
+            numberValue={goalAmount}
+            setNumberValue={setGoalAmount}
+          />{" "}
+          for {/* savings goal name */}
+          <TextInput
+            name="Savings Goal"
+            value={savingsGoal}
+            setValue={setSavingsGoal}
+          />{" "}
+          by {/* goal target date */}
+          <DateInput
+            name="Goal Target Date"
+            dateValue={targetDate}
+            setDateValue={setTargetDate}
+            minDate={aMonthFromToday}
+          />
+          .
+        </p>
+      </div>
+    </>
   );
 };
 

@@ -61,69 +61,72 @@ const TargetAmount = ({
   }, [fundingAmount, goalAmount, fundingFrequency, startingDate]);
 
   return (
-    <div role="tabpanel" id="target-amount">
-      <p>
-        If I put
-        {/* funding amount */}{" "}
-        <NumberInput
-          name="Funding Amount"
-          step={10}
-          numberValue={fundingAmount}
-          setNumberValue={setFundingAmount}
-        />{" "}
-        towards {/* savings goal name */}
-        <TextInput
-          name="Savings Goal"
-          value={savingsGoal}
-          setValue={setSavingsGoal}
-        />{" "}
-        goal
-        {/* funding frequency */}
-        {" every "}
-        <DropdownInput
-          name="Funding Frequency"
-          value={fundingFrequency}
-          onChange={handleFrequencyChange}
-          options={["week", "two-weeks", "month"]}
-        />{" "}
-        starting {/* starting date */}
-        <DateInput
-          name="Starting Date"
-          dateValue={startingDate}
-          setDateValue={setStartingDate}
-        />
-        , I will {/* if it's never */}
-        {goalFinishDate === "never" ? (
-          <span className="calc-value">never</span>
-        ) : (
-          ""
-        )}
-        {/* if it's not never */} reach my goal of
-        {/* goal amount */}{" "}
-        <NumberInput
-          name="Goal Amount"
-          step={100}
-          numberValue={goalAmount}
-          setNumberValue={setGoalAmount}
-        />
-        {goalFinishDate !== "never" ? " in " : ""}
-        {/* amount calculated */}
-        {goalFinishDate === "never" ? (
-          ""
-        ) : timeToReachGoal.months === 1 ? (
-          <span className="calc-value">1 month</span>
-        ) : (
-          <span className="calc-value">{timeToReachGoal.months} months</span>
-        )}
-        {goalFinishDate !== "never" ? ", on " : ""}
-        {goalFinishDate !== "never" ? (
-          <span className="calc-value">{goalFinishDate}</span>
-        ) : (
-          ""
-        )}
-        .
-      </p>
-    </div>
+    <>
+      <p className="description">How long will it take to reach my goal?</p>
+      <div role="tabpanel" id="target-amount">
+        <p>
+          If I put
+          {/* funding amount */}{" "}
+          <NumberInput
+            name="Funding Amount"
+            step={10}
+            numberValue={fundingAmount}
+            setNumberValue={setFundingAmount}
+          />{" "}
+          towards {/* savings goal name */}
+          <TextInput
+            name="Savings Goal"
+            value={savingsGoal}
+            setValue={setSavingsGoal}
+          />{" "}
+          goal
+          {/* funding frequency */}
+          {" every "}
+          <DropdownInput
+            name="Funding Frequency"
+            value={fundingFrequency}
+            onChange={handleFrequencyChange}
+            options={["week", "two-weeks", "month"]}
+          />{" "}
+          starting {/* starting date */}
+          <DateInput
+            name="Starting Date"
+            dateValue={startingDate}
+            setDateValue={setStartingDate}
+          />
+          , I will {/* if it's never */}
+          {goalFinishDate === "never" ? (
+            <span className="calc-value">never</span>
+          ) : (
+            ""
+          )}
+          {/* if it's not never */} reach my goal of
+          {/* goal amount */}{" "}
+          <NumberInput
+            name="Goal Amount"
+            step={100}
+            numberValue={goalAmount}
+            setNumberValue={setGoalAmount}
+          />
+          {goalFinishDate !== "never" ? " in " : ""}
+          {/* amount calculated */}
+          {goalFinishDate === "never" ? (
+            ""
+          ) : timeToReachGoal.months === 1 ? (
+            <span className="calc-value">1 month</span>
+          ) : (
+            <span className="calc-value">{timeToReachGoal.months} months</span>
+          )}
+          {goalFinishDate !== "never" ? ", on " : ""}
+          {goalFinishDate !== "never" ? (
+            <span className="calc-value">{goalFinishDate}</span>
+          ) : (
+            ""
+          )}
+          .
+        </p>
+      </div>
+    </>
   );
 };
 
