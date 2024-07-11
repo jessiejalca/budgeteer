@@ -15,6 +15,10 @@
   color: var(--text-color);
 }
 
+body {
+  width: 100%;
+}
+
 .subhead {
   font-size: 1.4em;
   font-style: italic;
