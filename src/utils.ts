@@ -86,10 +86,18 @@ const calculateTimeBetweenDates = (
   return { weeks, months, years };
 };
 
+// Format a date as "Month Day, Year"
+const formatter = new Intl.DateTimeFormat("en", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+
 export default {
   calculatePeriods,
   calculateAmountPerPeriod,
   calculateNumberOfRuns,
   calculateGoalFinishDate,
   calculateTimeBetweenDates,
+  formatter,
 };

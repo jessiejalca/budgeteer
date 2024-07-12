@@ -30,6 +30,9 @@ const TargetAmount = ({
       fundingFrequency
     )
   );
+  const [strGoalFinishDate, setStrGoalFinishDate] = React.useState<string>(
+    utils.formatter.format(new Date(goalFinishDate))
+  );
   const [timeToReachGoal, setTimeToReachGoal] = React.useState<TimePeriod>(
     utils.calculateTimeBetweenDates(startingDate, goalFinishDate)
   );
@@ -58,7 +61,14 @@ const TargetAmount = ({
     // Update the goalAmount state
     setTimeToReachGoal(newTimeToReachGoal);
     setGoalFinishDate(newGoalFinishDate);
-  }, [fundingAmount, goalAmount, fundingFrequency, startingDate]);
+    setStrGoalFinishDate(utils.formatter.format(new Date(goalFinishDate)));
+  }, [
+    fundingAmount,
+    goalAmount,
+    fundingFrequency,
+    startingDate,
+    goalFinishDate,
+  ]);
 
   return (
     <>
@@ -119,7 +129,7 @@ const TargetAmount = ({
           )}
           {goalFinishDate !== "never" ? ", on " : ""}
           {goalFinishDate !== "never" ? (
-            <span className="calc-value">{goalFinishDate}</span>
+            <span className="calc-value">{strGoalFinishDate}</span>
           ) : (
             ""
           )}
