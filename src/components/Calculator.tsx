@@ -11,6 +11,9 @@ const Calculator = () => {
   const today: string = new Date().toISOString().split("T")[0];
   const [startingDate, setStartingDate] = React.useState<string>(today);
 
+  // Set the default goal name here, allowing it to persist between calculators
+  const [goalName, setGoalName] = React.useState<string>("my vacation");
+
   // Get the value of the selected frequency
   const [fundingFrequency, setFundingFrequency] =
     React.useState<string>("week");
@@ -33,6 +36,8 @@ const Calculator = () => {
       <main>
         {calculator === "generate-amount" ? (
           <GenerateAmount
+            goalName={goalName}
+            setGoalName={setGoalName}
             startingDate={startingDate}
             setStartingDate={setStartingDate}
             fundingFrequency={fundingFrequency}
@@ -40,6 +45,8 @@ const Calculator = () => {
           />
         ) : (
           <GenerateDate
+            goalName={goalName}
+            setGoalName={setGoalName}
             startingDate={startingDate}
             setStartingDate={setStartingDate}
             fundingFrequency={fundingFrequency}

@@ -6,6 +6,8 @@ import utils from "../../utils";
 import DropdownInput from "../inputs/DropdownInput";
 
 type GenerateDateProps = {
+  goalName: string;
+  setGoalName: (goal: string) => void;
   startingDate: string;
   setStartingDate: (date: string) => void;
   fundingFrequency: string;
@@ -15,6 +17,8 @@ type GenerateDateProps = {
 type TimePeriod = { weeks: number; months: number; years: number };
 
 const GenerateDate = ({
+  goalName,
+  setGoalName,
   startingDate,
   setStartingDate,
   fundingFrequency,
@@ -22,7 +26,6 @@ const GenerateDate = ({
 }: GenerateDateProps) => {
   const [goalAmount, setGoalAmount] = React.useState<number>(1000);
   const [fundingAmount, setFundingAmount] = React.useState<number>(25);
-  const [savingsGoal, setSavingsGoal] = React.useState<string>("my vacation");
   const [goalFinishDate, setGoalFinishDate] = React.useState<string>(
     utils.calculateGoalFinishDate(
       startingDate,
@@ -90,8 +93,8 @@ const GenerateDate = ({
           towards {/* savings goal name */}
           <TextInput
             name="Savings Goal"
-            value={savingsGoal}
-            setValue={setSavingsGoal}
+            value={goalName}
+            setValue={setGoalName}
           />{" "}
           goal
           {/* funding frequency */}

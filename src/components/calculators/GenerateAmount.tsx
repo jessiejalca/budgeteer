@@ -6,6 +6,8 @@ import TextInput from "../inputs/TextInput";
 import utils from "../../utils";
 
 type GenerateAmountProps = {
+  goalName: string;
+  setGoalName: (name: string) => void;
   startingDate: string;
   setStartingDate: (date: string) => void;
   fundingFrequency: string;
@@ -13,12 +15,13 @@ type GenerateAmountProps = {
 };
 
 const GenerateAmount = ({
+  goalName,
+  setGoalName,
   startingDate,
   setStartingDate,
   fundingFrequency,
   handleFrequencyChange,
 }: GenerateAmountProps) => {
-  const [savingsGoal, setSavingsGoal] = React.useState<string>("my vacation");
   const [goalAmount, setGoalAmount] = React.useState<number>(1000);
   const [amountSaved, setAmountSaved] = React.useState<number>(0);
   const [amountPerPeriod, setAmountPerPeriod] = React.useState<number>(0);
@@ -87,8 +90,8 @@ const GenerateAmount = ({
           for {/* savings goal name */}
           <TextInput
             name="Savings Goal"
-            value={savingsGoal}
-            setValue={setSavingsGoal}
+            value={goalName}
+            setValue={setGoalName}
           />{" "}
           by {/* goal target date */}
           <DateInput
