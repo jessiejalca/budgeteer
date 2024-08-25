@@ -5,7 +5,7 @@ import DateInput from "../inputs/DateInput";
 import utils from "../../utils";
 import DropdownInput from "../inputs/DropdownInput";
 
-type TargetAmountProps = {
+type GenerateDateProps = {
   startingDate: string;
   setStartingDate: (date: string) => void;
   fundingFrequency: string;
@@ -14,12 +14,12 @@ type TargetAmountProps = {
 
 type TimePeriod = { weeks: number; months: number; years: number };
 
-const TargetAmount = ({
+const GenerateDate = ({
   startingDate,
   setStartingDate,
   fundingFrequency,
   handleFrequencyChange,
-}: TargetAmountProps) => {
+}: GenerateDateProps) => {
   const [goalAmount, setGoalAmount] = React.useState<number>(1000);
   const [fundingAmount, setFundingAmount] = React.useState<number>(25);
   const [savingsGoal, setSavingsGoal] = React.useState<string>("my vacation");
@@ -73,7 +73,11 @@ const TargetAmount = ({
   return (
     <>
       <p className="description">How long will it take to reach my goal?</p>
-      <div role="tabpanel" id="target-amount">
+      <div
+        aria-label="Calculator to generate a savings goal date"
+        role="tabpanel"
+        id="generate-date"
+      >
         <p>
           If I put
           {/* funding amount */}{" "}
@@ -140,4 +144,4 @@ const TargetAmount = ({
   );
 };
 
-export default TargetAmount;
+export default GenerateDate;

@@ -1,11 +1,11 @@
 import React from "react";
 import TabSet from "./ui/TabSet";
-import TargetDate from "./calculators/TargetDate";
-import TargetAmount from "./calculators/TargetAmount";
+import GenerateAmount from "./calculators/GenerateAmount";
+import GenerateDate from "./calculators/GenerateDate";
 
 const Calculator = () => {
   // Decide which calculator to render based on the user's selection
-  const [calculator, setCalculator] = React.useState<string>("target-date");
+  const [calculator, setCalculator] = React.useState<string>("generate-amount");
 
   // Set the default starting date to today
   const today: string = new Date().toISOString().split("T")[0];
@@ -27,19 +27,19 @@ const Calculator = () => {
       <TabSet
         setCalculator={setCalculator}
         calculator={calculator}
-        tabNames={["target-date", "target-amount"]}
+        tabNames={["generate-amount", "generate-date"]}
       />
       {/* Render the selected calculator */}
       <main>
-        {calculator === "target-date" ? (
-          <TargetDate
+        {calculator === "generate-amount" ? (
+          <GenerateAmount
             startingDate={startingDate}
             setStartingDate={setStartingDate}
             fundingFrequency={fundingFrequency}
             handleFrequencyChange={handleFrequencyChange}
           />
         ) : (
-          <TargetAmount
+          <GenerateDate
             startingDate={startingDate}
             setStartingDate={setStartingDate}
             fundingFrequency={fundingFrequency}

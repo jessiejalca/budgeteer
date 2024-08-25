@@ -5,19 +5,19 @@ import DropdownInput from "../inputs/DropdownInput";
 import TextInput from "../inputs/TextInput";
 import utils from "../../utils";
 
-type TargetDateProps = {
+type GenerateAmountProps = {
   startingDate: string;
   setStartingDate: (date: string) => void;
   fundingFrequency: string;
   handleFrequencyChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const TargetDate = ({
+const GenerateAmount = ({
   startingDate,
   setStartingDate,
   fundingFrequency,
   handleFrequencyChange,
-}: TargetDateProps) => {
+}: GenerateAmountProps) => {
   const [savingsGoal, setSavingsGoal] = React.useState<string>("my vacation");
   const [goalAmount, setGoalAmount] = React.useState<number>(1000);
   const [amountSaved, setAmountSaved] = React.useState<number>(0);
@@ -47,7 +47,11 @@ const TargetDate = ({
   return (
     <>
       <p className="description">How much do I actually need to save?</p>
-      <div aria-label="Target Date Calculator" role="tabpanel" id="target-date">
+      <div
+        aria-label="Calculator to generate a saving amount"
+        role="tabpanel"
+        id="generate-amount"
+      >
         <p>
           With {/* amount already saved */}
           <NumberInput
@@ -100,4 +104,4 @@ const TargetDate = ({
   );
 };
 
-export default TargetDate;
+export default GenerateAmount;
